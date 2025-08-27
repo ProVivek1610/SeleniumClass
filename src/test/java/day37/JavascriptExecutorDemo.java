@@ -1,0 +1,43 @@
+package day37;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import net.bytebuddy.asm.Advice.Argument;
+
+public class JavascriptExecutorDemo {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new ChromeDriver();
+		//ChromeDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		 WebElement inputbox = driver.findElement(By.xpath("//input[@id='name']"));
+		
+		//passing the text into inputbox - Alternate of sendKeys
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		//JavascriptExecutor js = driver;
+		js.executeScript( "arguments[0].setAttribute('value' , 'john')",inputbox );
+		
+		//Clicking on element - alternate of click().
+		WebElement btn=driver.findElement(By.xpath("//input[@id='male']"));
+		js.executeScript("arguments[0].click()", btn);
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}
